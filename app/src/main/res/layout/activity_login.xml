@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.auth.LoginActivity">
+
+    <ProgressBar
+        android:id="@+id/loginProgressBar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/loginImg"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        app:srcCompat="@drawable/app_logo"
+        android:layout_marginTop="70dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/loginTxt"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/loginTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_back"
+        android:textSize="@dimen/headingTextSize"
+        android:textAllCaps="false"
+        android:textAlignment="center"
+        android:textColor="@color/text_color"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/largeMargin"
+        app:layout_constraintTop_toBottomOf="@id/loginImg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/loginWithEmailBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_with_email"
+        android:textAllCaps="false"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/largeTextSize"
+        android:background="@drawable/orange_btn_bg"
+        android:padding="@dimen/largePadding"
+        android:layout_marginTop="120dp"
+        android:layout_marginStart="@dimen/largeMargin"
+        android:layout_marginEnd="@dimen/largeMargin"
+        app:layout_constraintTop_toBottomOf="@id/loginTxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/loginWithPhoneNoBtn"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/loginWithPhoneNoBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_with_phone_no"
+        android:textAllCaps="false"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/largeTextSize"
+        android:background="@drawable/orange_btn_stroke"
+        android:padding="@dimen/largePadding"
+        android:layout_marginStart="@dimen/largeMargin"
+        android:layout_marginEnd="@dimen/largeMargin"
+        app:layout_constraintTop_toBottomOf="@id/loginWithEmailBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/loginWithGoogleBtn"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/loginWithGoogleBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_with_google"
+        android:textAllCaps="false"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/largeTextSize"
+        android:background="@drawable/orange_btn_stroke"
+        android:padding="@dimen/largePadding"
+        android:layout_marginStart="@dimen/largeMargin"
+        android:layout_marginEnd="@dimen/largeMargin"
+        app:layout_constraintTop_toBottomOf="@id/loginWithPhoneNoBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/loginWithFacebookBtn"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/loginWithFacebookBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_with_facebook"
+        android:textAllCaps="false"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/largeTextSize"
+        android:background="@drawable/orange_btn_stroke"
+        android:padding="@dimen/largePadding"
+        android:layout_marginStart="@dimen/largeMargin"
+        android:layout_marginEnd="@dimen/largeMargin"
+        app:layout_constraintTop_toBottomOf="@id/loginWithGoogleBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/goToRegisterTxt"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/goToRegisterTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/not_a_member"
+        android:textSize="@dimen/smallTextSize"
+        android:textAllCaps="false"
+        android:textAlignment="center"
+        android:textColor="@color/text_color"
+        android:textStyle="bold"
+        android:layout_margin="@dimen/largeMargin"
+        app:layout_constraintTop_toBottomOf="@id/loginWithFacebookBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

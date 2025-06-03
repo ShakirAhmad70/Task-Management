@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Task Manager App</string>
+    <string name="task_manager">Task Manager</string>
+    <string name="_continue">Continue</string>
+    <string name="skip">Skip ></string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="counter">1/5</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="next">Next</string>
+    <string name="register_for_extra_benefits">Register for\nExtra benefits</string>
+    <string name="register_with_email">Register with email</string>
+    <string name="register_with_google">Register with Google</string>
+    <string name="register_with_facebook">Register with Facebook</string>
+    <string name="register_with_phone_no">Register with Phone No.</string>
+    <string name="already_have_an_account">Already have an account? Then Login</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="login_with_email">Login with email</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="login_with_facebook">Login with Facebook</string>
+    <string name="login_with_phone_no">Login with Phone No.</string>
+    <string name="not_a_member">Not a member? Then Register</string>
+    <string name="enter_your_email">Enter your email address</string>
+    <string name="enter_your_phone_no">Enter your phone number</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="sendOtp">Send OTP</string>
+    <string name="_91">🇮🇳+91</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="logout">Logout</string>
+
+
+    <!--google authentication-->
+    <string name="web_client_id">707888913089-ip1vgled7jd65sr2rnrd3m8d02tm0l5m.apps.googleusercontent.com</string>
+
+    <!--facebook authentication-->
+    <string name="facebook_app_id">1439832287147344</string>
+    <string name="fb_login_protocol_scheme">fb1439832287147344</string>
+    <string name="facebook_client_token">45610bd3d4dd43e75cae438ce2a88605</string>
+
+
+</resources>
