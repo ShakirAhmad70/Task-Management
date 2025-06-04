@@ -32,14 +32,4 @@
     <string name="resend_otp">Resend OTP</string>
     <string name="logout">Logout</string>
 
-
-    <!--google authentication-->
-    <string name="web_client_id">707888913089-ip1vgled7jd65sr2rnrd3m8d02tm0l5m.apps.googleusercontent.com</string>
-
-    <!--facebook authentication-->
-    <string name="facebook_app_id">1439832287147344</string>
-    <string name="fb_login_protocol_scheme">fb1439832287147344</string>
-    <string name="facebook_client_token">45610bd3d4dd43e75cae438ce2a88605</string>
-
-
 </resources>

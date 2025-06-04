@@ -3,16 +3,19 @@ package com.shak.taskmanagerapp.activities.ui
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.airbnb.lottie.LottieAnimationView
-import com.shak.taskmanagerapp.activities.splash.SplashActivity
-import com.shak.taskmanagerapp.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.shak.taskmanagerapp.R
+import com.shak.taskmanagerapp.activities.auth.RegisterBenefitsActivity
+import com.shak.taskmanagerapp.activities.splash.SplashActivity
+import com.shak.taskmanagerapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -29,9 +32,20 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        val mainPref = getSharedPreferences("mainPref", MODE_PRIVATE)
+        val isSkippedToMain = mainPref.getBoolean("isSkippedToMain", false)
+        if(!isSkippedToMain){
+            startActivity(Intent(this, RegisterBenefitsActivity::class.java))
+            finish()
+        }
+
         binding.apply {
             //TODO: Remove this temporary logout button
             logoutBtn.setOnClickListener {
+                mainPref.edit {
+                    putBoolean("isSkippedToMain", false)
+                    commit()
+                }
                 FirebaseAuth.getInstance().signOut()
                 startActivity(Intent(this@MainActivity, SplashActivity::class.java))
                 finish()
@@ -55,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             menuLogoutLottieAnimView.playAnimation()
 
             val durationOfLottieAnimation = menuLogoutLottieAnimView.duration
-            Handler().postDelayed(
+            Handler(Looper.getMainLooper()).postDelayed(
                 {
                     FirebaseAuth.getInstance().signOut()
                     startActivity(
@@ -69,7 +83,6 @@ class MainActivity : AppCompatActivity() {
                 durationOfLottieAnimation + 300L
             )
         }
-
         return true
     }
 }

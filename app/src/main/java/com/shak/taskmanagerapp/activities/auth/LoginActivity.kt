@@ -54,10 +54,9 @@ class LoginActivity : AppCompatActivity() {
             }
 
             loginWithFacebookBtn.setOnClickListener {
-                //TODO: iska and main activity me back button ka kuchh karna padega
                 setUiEnabled(false)  //disable all buttons to prevent multiple clicks during login
                 registerActivity.registerAndLoginWithFacebook(this@LoginActivity, fbCallbackManager)
-                setUiEnabled(true)
+                setUiEnabled(true)  //enable all buttons after successful login
             }
 
             goToRegisterTxt.setOnClickListener {

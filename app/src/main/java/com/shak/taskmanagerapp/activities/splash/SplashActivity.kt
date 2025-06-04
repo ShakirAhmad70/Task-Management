@@ -8,10 +8,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.auth.FirebaseAuth
 import com.shak.taskmanagerapp.activities.ui.MainActivity
 import com.shak.taskmanagerapp.activities.ui.OnboardingActivity
 import com.shak.taskmanagerapp.databinding.ActivitySplashBinding
-import com.google.firebase.auth.FirebaseAuth
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -32,6 +32,9 @@ class SplashActivity : AppCompatActivity() {
         val firebaseAuth = FirebaseAuth.getInstance()
         val currentUser = firebaseAuth.currentUser
 
+        val mainPref = getSharedPreferences("mainPref", MODE_PRIVATE)
+        val isSkippedToMain = mainPref.getBoolean("isSkippedToMain", false)
+
 
         binding.splashImg.animate()
             .translationY(-100f)
@@ -48,10 +51,10 @@ class SplashActivity : AppCompatActivity() {
             .scaleY(1.1f)
             .setDuration(1500)
             .withEndAction {
-                if (currentUser == null) {
-                    startActivity(Intent(this, OnboardingActivity::class.java))
-                } else {
+                if (isSkippedToMain || currentUser != null) {
                     startActivity(Intent(this, MainActivity::class.java))
+                } else {
+                    startActivity(Intent(this, OnboardingActivity::class.java))
                 }
                 finish()
             }

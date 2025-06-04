@@ -13,10 +13,10 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.airbnb.lottie.LottieAnimationView
+import com.google.firebase.auth.FirebaseAuth
 import com.shak.taskmanagerapp.R
 import com.shak.taskmanagerapp.activities.ui.MainActivity
 import com.shak.taskmanagerapp.databinding.ActivityEmailRegisterLoginBinding
-import com.google.firebase.auth.FirebaseAuth
 
 class EmailRegisterLoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEmailRegisterLoginBinding
@@ -68,6 +68,7 @@ class EmailRegisterLoginActivity : AppCompatActivity() {
                             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
                                         Toast.makeText(this@EmailRegisterLoginActivity,"Registration Successful",Toast.LENGTH_SHORT).show()
+
                                         val intentToMain = Intent(this@EmailRegisterLoginActivity, MainActivity::class.java)
                                             .apply {
                                                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -106,6 +107,7 @@ class EmailRegisterLoginActivity : AppCompatActivity() {
                         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
                                     Toast.makeText(this@EmailRegisterLoginActivity,"Login Successful",Toast.LENGTH_SHORT).show()
+
                                     val intentToMain = Intent(this@EmailRegisterLoginActivity,MainActivity::class.java)
                                         .apply {
                                             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

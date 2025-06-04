@@ -30,6 +30,7 @@
     import com.google.firebase.auth.FirebaseAuth
     import com.google.firebase.auth.FirebaseAuthUserCollisionException
     import com.google.firebase.auth.GoogleAuthProvider
+    import com.shak.taskmanagerapp.BuildConfig
     import com.shak.taskmanagerapp.R
     import com.shak.taskmanagerapp.activities.ui.MainActivity
     import com.shak.taskmanagerapp.databinding.ActivityRegisterBinding
@@ -51,7 +52,6 @@
                 v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
                 insets
             }
-
 
 
             binding.apply {
@@ -99,7 +99,7 @@
         suspend fun registerAndLoginWithGoogle(context: Context) {
             val googleIdOption = GetGoogleIdOption.Builder()
                 .setFilterByAuthorizedAccounts(false)
-                .setServerClientId(context.getString(R.string.web_client_id))
+                .setServerClientId(BuildConfig.GOOGLE_WEB_CLIENT_ID)
                 .setAutoSelectEnabled(true)
                 .setNonce("")
                 .build()
@@ -136,6 +136,7 @@
                                             "Login successful",
                                             Toast.LENGTH_SHORT
                                         ).show()
+
                                         val intent = Intent(context, MainActivity::class.java)
                                             .apply {
                                                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -204,6 +205,7 @@
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         Toast.makeText(context as AppCompatActivity, "Login successful", Toast.LENGTH_SHORT).show()
+
                         val intent = Intent(context, MainActivity::class.java).apply {
                             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         }
@@ -231,8 +233,5 @@
             // Pass the activity result back to the Facebook SDK
             fbCallbackManager.onActivityResult(requestCode, resultCode, data)
         }
-
-
-
 
     }

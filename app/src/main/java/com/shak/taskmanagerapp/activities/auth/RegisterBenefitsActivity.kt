@@ -12,6 +12,7 @@ import com.shak.taskmanagerapp.adapters.RegisterBenefitsViewPagerAdapter
 import com.shak.taskmanagerapp.databinding.ActivityRegisterBenefitsBinding
 import com.shak.taskmanagerapp.models.RegisterBenefitsItemModel
 import kotlin.reflect.KClass
+import androidx.core.content.edit
 
 class RegisterBenefitsActivity : AppCompatActivity() {
 
@@ -66,6 +67,12 @@ class RegisterBenefitsActivity : AppCompatActivity() {
             }
 
             skipBtn.setOnClickListener {
+                val mainPref = getSharedPreferences("mainPref", MODE_PRIVATE)
+                mainPref.edit {
+                    putBoolean("isSkippedToMain", true)
+                    commit()
+                }
+
                 navigateTo(MainActivity::class)
                 finish()
             }

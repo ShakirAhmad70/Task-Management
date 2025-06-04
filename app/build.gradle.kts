@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -16,24 +18,68 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    val secretProperties = Properties()
+    val secretPropertiesFile = File(rootDir,"secrets.properties")
+    if(secretPropertiesFile.exists() && secretPropertiesFile.isFile){
+        secretPropertiesFile.inputStream().use {
+            secretProperties.load(it)
+        }
     }
 
     buildTypes {
+
+        debug {
+
+            // Secret keys
+            buildConfigField("String", "GOOGLE_WEB_CLIENT_ID", "\"${secretProperties.getProperty("GOOGLE_WEB_CLIENT_ID")}\"")
+            buildConfigField("String", "FACEBOOK_APP_ID", "\"${secretProperties.getProperty("FACEBOOK_APP_ID")}\"")
+            buildConfigField("String", "FB_LOGIN_PROTOCOL_SCHEME", "\"${secretProperties.getProperty("FB_LOGIN_PROTOCOL_SCHEME")}\"")
+            buildConfigField("String", "FACEBOOK_CLIENT_TOKEN", "\"${secretProperties.getProperty("FACEBOOK_CLIENT_TOKEN")}\"")
+
+            
+            // Add manifest placeholders for direct manifest access
+            // For google web client id
+            manifestPlaceholders["googleWebClientId"] = secretProperties.getProperty("GOOGLE_WEB_CLIENT_ID")
+
+            // For facebook
+            manifestPlaceholders["facebookAppId"] = secretProperties.getProperty("FACEBOOK_APP_ID")
+            manifestPlaceholders["fbLoginProtocolScheme"] = secretProperties.getProperty("FB_LOGIN_PROTOCOL_SCHEME")
+            manifestPlaceholders["facebookClientToken"] = secretProperties.getProperty("FACEBOOK_CLIENT_TOKEN")
+
+        }
+
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            // Secret keys
+            buildConfigField("String", "GOOGLE_WEB_CLIENT_ID", "\"${secretProperties.getProperty("GOOGLE_WEB_CLIENT_ID")}\"")
+            buildConfigField("String", "FACEBOOK_APP_ID", "\"${secretProperties.getProperty("FACEBOOK_APP_ID")}\"")
+            buildConfigField("String", "FB_LOGIN_PROTOCOL_SCHEME", "\"${secretProperties.getProperty("FB_LOGIN_PROTOCOL_SCHEME")}\"")
+            buildConfigField("String", "FACEBOOK_CLIENT_TOKEN", "\"${secretProperties.getProperty("FACEBOOK_CLIENT_TOKEN")}\"")
+
         }
     }
+
+    buildFeatures{
+        buildConfig = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
+
     viewBinding {
         enable = true
     }
