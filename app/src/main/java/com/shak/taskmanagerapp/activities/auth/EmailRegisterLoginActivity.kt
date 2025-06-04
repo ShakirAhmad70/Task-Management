@@ -76,8 +76,8 @@ class EmailRegisterLoginActivity : AppCompatActivity() {
                                         startActivity(intentToMain)
                                         finish()
                                     } else {
-                                        Toast.makeText(this@EmailRegisterLoginActivity,"Registration Failed because ${task.exception?.message.toString()}",Toast.LENGTH_SHORT).show()
-                                        Log.e("RegistrationCheck", "${task.exception}")
+                                        Toast.makeText(this@EmailRegisterLoginActivity,task.exception?.message.toString(),Toast.LENGTH_SHORT).show()
+                                        Log.e("RegistrationCheck", "${task.exception?.message}")
                                     }
                                 }
                         } else {
@@ -115,7 +115,7 @@ class EmailRegisterLoginActivity : AppCompatActivity() {
                                     startActivity(intentToMain)
                                     finish()
                                 } else {
-                                    Toast.makeText(this@EmailRegisterLoginActivity,"Login Failed because ${task.exception?.message.toString()}",Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this@EmailRegisterLoginActivity, task.exception?.message.toString(),Toast.LENGTH_SHORT).show()
                                     Log.e("LoginCheck", task.exception.toString())
                                 }
                             }

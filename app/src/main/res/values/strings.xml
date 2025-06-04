@@ -31,5 +31,10 @@
     <string name="verify_otp">Verify OTP</string>
     <string name="resend_otp">Resend OTP</string>
     <string name="logout">Logout</string>
+    <string name="register_benefits">Register Benefits</string>
+    <string name="view">View</string>
+    <string name="sort">Sort</string>
+    <string name="search">Search</string>
+    <string name="select">Select</string>
 
 </resources>

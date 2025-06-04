@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
+import com.shak.taskmanagerapp.BuildConfig
 import com.shak.taskmanagerapp.activities.ui.MainActivity
 import com.shak.taskmanagerapp.activities.ui.OnboardingActivity
 import com.shak.taskmanagerapp.databinding.ActivitySplashBinding
@@ -32,8 +33,8 @@ class SplashActivity : AppCompatActivity() {
         val firebaseAuth = FirebaseAuth.getInstance()
         val currentUser = firebaseAuth.currentUser
 
-        val mainPref = getSharedPreferences("mainPref", MODE_PRIVATE)
-        val isSkippedToMain = mainPref.getBoolean("isSkippedToMain", false)
+        val mainPref = getSharedPreferences(BuildConfig.MAIN_PREFERENCE_KEY, MODE_PRIVATE)
+        val isLoggedOut = mainPref.getBoolean(BuildConfig.IS_LOGGED_OUT_KEY, true)
 
 
         binding.splashImg.animate()
@@ -51,7 +52,7 @@ class SplashActivity : AppCompatActivity() {
             .scaleY(1.1f)
             .setDuration(1500)
             .withEndAction {
-                if (isSkippedToMain || currentUser != null) {
+                if ( currentUser != null || !isLoggedOut ) {
                     startActivity(Intent(this, MainActivity::class.java))
                 } else {
                     startActivity(Intent(this, OnboardingActivity::class.java))

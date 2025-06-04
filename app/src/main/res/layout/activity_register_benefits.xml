@@ -23,18 +23,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/regBenefitsTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/largeMargin"
+        android:layout_marginTop="@dimen/largeMargin"
+        android:layout_marginEnd="@dimen/largeMargin"
+        android:text="@string/register_benefits"
+        android:textAlignment="center"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/headingTextSize"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/skipBtn" />
+
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/regBenefitsVp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/largeMargin"
-        android:layout_marginTop="@dimen/largeMargin"
         android:layout_marginEnd="@dimen/largeMargin"
         android:layout_marginBottom="@dimen/largeMargin"
         app:layout_constraintBottom_toTopOf="@id/nextBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/skipBtn" />
+        app:layout_constraintTop_toBottomOf="@id/regBenefitsTxt" />
 
     <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
         android:id="@+id/dotsIndicator"

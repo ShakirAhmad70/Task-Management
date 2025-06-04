@@ -38,6 +38,8 @@ android {
             buildConfigField("String", "FACEBOOK_APP_ID", "\"${secretProperties.getProperty("FACEBOOK_APP_ID")}\"")
             buildConfigField("String", "FB_LOGIN_PROTOCOL_SCHEME", "\"${secretProperties.getProperty("FB_LOGIN_PROTOCOL_SCHEME")}\"")
             buildConfigField("String", "FACEBOOK_CLIENT_TOKEN", "\"${secretProperties.getProperty("FACEBOOK_CLIENT_TOKEN")}\"")
+            buildConfigField("String", "MAIN_PREFERENCE_KEY", "\"${secretProperties.getProperty("MAIN_PREFERENCE_KEY")}\"")
+            buildConfigField("String", "IS_LOGGED_OUT_KEY", "\"${secretProperties.getProperty("IS_LOGGED_OUT_KEY")}\"")
 
             
             // Add manifest placeholders for direct manifest access
@@ -63,6 +65,8 @@ android {
             buildConfigField("String", "FACEBOOK_APP_ID", "\"${secretProperties.getProperty("FACEBOOK_APP_ID")}\"")
             buildConfigField("String", "FB_LOGIN_PROTOCOL_SCHEME", "\"${secretProperties.getProperty("FB_LOGIN_PROTOCOL_SCHEME")}\"")
             buildConfigField("String", "FACEBOOK_CLIENT_TOKEN", "\"${secretProperties.getProperty("FACEBOOK_CLIENT_TOKEN")}\"")
+            buildConfigField("String", "MAIN_PREFERENCE_KEY", "\"${secretProperties.getProperty("MAIN_PREFERENCE_KEY")}\"")
+            buildConfigField("String", "IS_LOGGED_OUT_KEY", "\"${secretProperties.getProperty("IS_LOGGED_OUT_KEY")}\"")
 
         }
     }

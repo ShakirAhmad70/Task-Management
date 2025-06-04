@@ -2,12 +2,40 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <item
+        android:id="@+id/search"
+        android:title="@string/search"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/app_logo"
+        />
+
+    <item
+        android:id="@+id/select"
+        android:title="@string/select"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/app_logo"
+        />
+
+    <item
+        android:id="@+id/view"
+        android:title="@string/view"
+        app:showAsAction="collapseActionView"
+        android:icon="@drawable/app_logo"
+        />
+
+    <item
+        android:id="@+id/Sort"
+        android:title="@string/sort"
+        app:showAsAction="collapseActionView"
+        android:icon="@drawable/app_logo"
+        />
+
     <item
         android:id="@+id/logout"
         android:title="@string/logout"
         app:showAsAction="collapseActionView"
         android:icon="@drawable/app_logo"
-        android:actionLayout="@layout/menu_lottie_logout_layout"
         />
 
 </menu>

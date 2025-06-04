@@ -17,7 +17,6 @@
         android:textAllCaps="false"
         android:textAlignment="center"
         android:textSize="@dimen/mediumTextSize"
-        android:layout_marginTop="@dimen/largeMargin"
         android:layout_marginStart="@dimen/xlargeMargin"
         android:layout_marginEnd="@dimen/xlargeMargin"
         app:layout_constraintTop_toTopOf="parent"

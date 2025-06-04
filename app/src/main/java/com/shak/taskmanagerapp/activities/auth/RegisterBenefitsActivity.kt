@@ -13,6 +13,7 @@ import com.shak.taskmanagerapp.databinding.ActivityRegisterBenefitsBinding
 import com.shak.taskmanagerapp.models.RegisterBenefitsItemModel
 import kotlin.reflect.KClass
 import androidx.core.content.edit
+import com.shak.taskmanagerapp.BuildConfig
 
 class RegisterBenefitsActivity : AppCompatActivity() {
 
@@ -67,9 +68,9 @@ class RegisterBenefitsActivity : AppCompatActivity() {
             }
 
             skipBtn.setOnClickListener {
-                val mainPref = getSharedPreferences("mainPref", MODE_PRIVATE)
+                val mainPref = getSharedPreferences(BuildConfig.MAIN_PREFERENCE_KEY, MODE_PRIVATE)
                 mainPref.edit {
-                    putBoolean("isSkippedToMain", true)
+                    putBoolean(BuildConfig.IS_LOGGED_OUT_KEY, false)
                     commit()
                 }
 

@@ -2,16 +2,14 @@ package com.shak.taskmanagerapp.activities.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.Menu
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.auth.FirebaseAuth
+import com.shak.taskmanagerapp.BuildConfig
 import com.shak.taskmanagerapp.R
 import com.shak.taskmanagerapp.activities.auth.RegisterBenefitsActivity
 import com.shak.taskmanagerapp.activities.splash.SplashActivity
@@ -19,6 +17,7 @@ import com.shak.taskmanagerapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val currentUser = FirebaseAuth.getInstance().currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +31,9 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val mainPref = getSharedPreferences("mainPref", MODE_PRIVATE)
-        val isSkippedToMain = mainPref.getBoolean("isSkippedToMain", false)
-        if(!isSkippedToMain){
+        val mainPref = getSharedPreferences(BuildConfig.MAIN_PREFERENCE_KEY, MODE_PRIVATE)
+        val isLoggedOut = mainPref.getBoolean(BuildConfig.IS_LOGGED_OUT_KEY, false)
+        if(!(currentUser != null || !isLoggedOut)){
             startActivity(Intent(this, RegisterBenefitsActivity::class.java))
             finish()
         }
@@ -43,11 +42,19 @@ class MainActivity : AppCompatActivity() {
             //TODO: Remove this temporary logout button
             logoutBtn.setOnClickListener {
                 mainPref.edit {
-                    putBoolean("isSkippedToMain", false)
+                    putBoolean(BuildConfig.IS_LOGGED_OUT_KEY, true)
                     commit()
                 }
-                FirebaseAuth.getInstance().signOut()
-                startActivity(Intent(this@MainActivity, SplashActivity::class.java))
+
+                if(FirebaseAuth.getInstance().currentUser != null){
+                    FirebaseAuth.getInstance().signOut()
+                }
+
+                val intent = Intent(this@MainActivity, SplashActivity::class.java)
+                    .apply {
+                        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    }
+                startActivity(intent)
                 finish()
             }
 
@@ -59,30 +66,27 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
 
-        // Get Lottie view from the custom layout
-        val logoutMenuItem = menu?.findItem(R.id.logout)
-        val actionView = logoutMenuItem?.actionView
-        val menuLogoutLottieAnimView = actionView?.findViewById<LottieAnimationView>(R.id.menuLogoutLottieAnimView)
+        val logoutItem = menu?.findItem(R.id.logout)
+        logoutItem?.setOnMenuItemClickListener {
+            val mainPref = getSharedPreferences(BuildConfig.MAIN_PREFERENCE_KEY, MODE_PRIVATE)
+            mainPref.edit {
+                putBoolean(BuildConfig.IS_LOGGED_OUT_KEY, true)
+                commit()
+            }
 
-        // Set click listener on the animation itself
-        menuLogoutLottieAnimView?.setOnClickListener {
-            menuLogoutLottieAnimView.playAnimation()
+            if(FirebaseAuth.getInstance().currentUser != null){
+                FirebaseAuth.getInstance().signOut()
+            }
 
-            val durationOfLottieAnimation = menuLogoutLottieAnimView.duration
-            Handler(Looper.getMainLooper()).postDelayed(
-                {
-                    FirebaseAuth.getInstance().signOut()
-                    startActivity(
-                        Intent(this@MainActivity, SplashActivity::class.java)
-                            .apply {
-                                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                            }
-                    )
-                    finish()
-                },
-                durationOfLottieAnimation + 300L
-            )
+            val intent = Intent(this@MainActivity, SplashActivity::class.java)
+                .apply {
+                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                }
+            startActivity(intent)
+            finish()
+            true
         }
+
         return true
     }
 }
