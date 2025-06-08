@@ -4,14 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.shak.taskmanagerapp.BuildConfig
 import com.shak.taskmanagerapp.R
 import com.shak.taskmanagerapp.activities.auth.RegisterBenefitsActivity
 import com.shak.taskmanagerapp.adapters.OnboardViewPagerAdapter
 import com.shak.taskmanagerapp.databinding.ActivityOnboardingBinding
 import com.shak.taskmanagerapp.models.OnboardingItemModel
-import kotlin.reflect.KClass
 
 class OnboardingActivity : AppCompatActivity() {
 
@@ -56,6 +57,9 @@ class OnboardingActivity : AppCompatActivity() {
             insets
         }
 
+        val mainPref = getSharedPreferences(BuildConfig.MAIN_PREFERENCE_KEY, MODE_PRIVATE)
+
+
         binding.apply {
 
             viewPager.adapter = OnboardViewPagerAdapter(itemsList)
@@ -64,18 +68,29 @@ class OnboardingActivity : AppCompatActivity() {
                 if(viewPager.currentItem < itemsList.size - 1) {
                     viewPager.currentItem  += 1
                 } else {
-                    navigateToAndFinishCurrentActivity(RegisterBenefitsActivity::class)
+                    mainPref.edit {
+                        putBoolean(BuildConfig.IS_ONBOARDING_COMPLETED_KEY, true)
+                        commit()
+                    }
+                    navigate()
                 }
             }
 
             skipTxt.setOnClickListener {
-                navigateToAndFinishCurrentActivity(RegisterBenefitsActivity::class)
+                mainPref.edit {
+                    putBoolean(BuildConfig.IS_ONBOARDING_COMPLETED_KEY, true)
+                    commit()
+                }
+                navigate()
             }
         }
     }
 
-    private fun navigateToAndFinishCurrentActivity(klass: KClass<*>) {
-        val intent = Intent(this, klass.java)
+    private fun navigate() {
+        val intent = Intent(this, RegisterBenefitsActivity::class.java)
+            .apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            }
         startActivity(intent)
         finish()
     }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -12,34 +11,67 @@
         android:id="@+id/mainAppBarLay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        >
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/mainToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:menu="@menu/toolbar_menu"
             app:title="@string/app_name"
-            android:background="@color/orange"
-            app:titleTextColor="@color/text_color"
-            />
+            app:titleTextColor="@color/text_color" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <Button
-        android:id="@+id/logoutBtn"
+    <ScrollView
+        android:id="@+id/scrollContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="logout"
-        android:textColor="@color/text_color"
-        android:layout_marginStart="@dimen/xxlargeMargin"
-        android:layout_marginEnd="@dimen/xxlargeMargin"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainAppBarLay">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mainContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hello World!"
+                android:textAlignment="center"
+                android:textColor="@color/text_color"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <me.ibrahimsn.lib.SmoothBottomBar
+        android:id="@+id/bottomNavBar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:menu="@menu/bottom_nav_menu"
+        app:indicatorColor="@color/orange"
+        app:iconTintActive="@color/green"
+        app:iconTint="@color/text_color"
+        app:textColor="@color/green"
+        app:activeItem="0"
+        app:itemFontFamily="@font/cascadia_code"
+        app:sideMargins="@dimen/smallMargin"
+        app:backgroundColor="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="HardcodedText"
+        android:contentDescription="@string/bottom_bar_desc"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/tasks"
+        android:title="@string/tasks"
+        android:icon="@drawable/ic_search" />
+
+    <item
+        android:id="@+id/calendar"
+        android:title="@string/calendar"
+        android:icon="@drawable/ic_search" />
+
+    <item
+        android:id="@+id/eisenhowerMatrix"
+        android:title="@string/eisenhower_matrix"
+        android:icon="@drawable/ic_search" />
+
+    <item
+        android:id="@+id/pomodoroTimer"
+        android:title="@string/pomodoro_timer"
+        android:icon="@drawable/ic_search" />
+
+    <item
+        android:id="@+id/profile"
+        android:title="@string/profile"
+        android:icon="@drawable/ic_search" />
+
+</menu>

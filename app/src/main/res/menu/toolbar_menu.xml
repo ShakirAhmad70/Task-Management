@@ -7,35 +7,42 @@
         android:id="@+id/search"
         android:title="@string/search"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/app_logo"
+        android:icon="@drawable/ic_search"
         />
 
     <item
         android:id="@+id/select"
         android:title="@string/select"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/app_logo"
+        android:icon="@drawable/ic_select"
         />
 
     <item
         android:id="@+id/view"
         android:title="@string/view"
-        app:showAsAction="collapseActionView"
-        android:icon="@drawable/app_logo"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_view"
         />
 
     <item
-        android:id="@+id/Sort"
+        android:id="@+id/sort"
         android:title="@string/sort"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_sort"
+        />
+
+    <item
+        android:id="@+id/settings"
+        android:title="@string/settings"
         app:showAsAction="collapseActionView"
-        android:icon="@drawable/app_logo"
+        android:icon="@drawable/ic_settings"
         />
 
     <item
         android:id="@+id/logout"
         android:title="@string/logout"
         app:showAsAction="collapseActionView"
-        android:icon="@drawable/app_logo"
+        android:icon="@drawable/ic_logout"
         />
 
 </menu>
