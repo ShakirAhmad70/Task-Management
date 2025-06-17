@@ -11,18 +11,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.shak.taskmanagerapp.BuildConfig
 import com.shak.taskmanagerapp.R
 import com.shak.taskmanagerapp.activities.auth.RegisterBenefitsActivity
 import com.shak.taskmanagerapp.activities.splash.SplashActivity
+import com.shak.taskmanagerapp.adapters.TasksRecyclerAdapter
 import com.shak.taskmanagerapp.databinding.ActivityMainBinding
+import com.shak.taskmanagerapp.models.TasksItemModel
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.BalloonAnimation
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val currentUser = FirebaseAuth.getInstance().currentUser
+    private val taskItemsList = emptyList<TasksItemModel>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,8 +70,49 @@ class MainActivity : AppCompatActivity() {
                 val balloon = createBalloon(tooltipTxt)
                 balloon.showAlignTop(bottomNavBar, ( pos - 2 ) * window.decorView.width / 5, 0)
             }
+
+
+            // Setup the Recycler view for Overdue tasks
+            setUpTasksRecyclerViews(this)
+
+
+            // Add items
+            addTasksFab.setOnClickListener {
+                showAddTaskBottomSheet(this)
+            }
+
         }
     }
+
+    private fun showAddTaskBottomSheet(binding: ActivityMainBinding) {
+        val bottomSheetView = layoutInflater.inflate(R.layout.add_edit_tasks_layout, null)
+
+        val bottomSheetDialog = BottomSheetDialog(this)
+        bottomSheetDialog.setContentView(bottomSheetView)
+        bottomSheetDialog.show()
+    }
+
+    private fun setUpTasksRecyclerViews(binding: ActivityMainBinding) {
+        binding.apply {
+            overDueTasksRV.layoutManager = LinearLayoutManager(this@MainActivity)
+            completedTasksRV.layoutManager = LinearLayoutManager(this@MainActivity)
+
+
+            overDueTasksRV.adapter = TasksRecyclerAdapter(
+                taskItemsList.filter {
+                    it.isChecked == false
+                }
+            )
+
+            completedTasksRV.adapter = TasksRecyclerAdapter(
+                taskItemsList.filter {
+                    it.isChecked == true
+                }
+            )
+
+        }
+    }
+
 
     private fun showToast(msg: String) {
         Toast.makeText(
@@ -78,7 +125,7 @@ class MainActivity : AppCompatActivity() {
     fun createBalloon(tooltipTxt: String): Balloon {
         Log.d("BalloonDebug", "Creating balloon for: $tooltipTxt")
         return Balloon.Builder(this)
-        .setText(tooltipTxt)
+            .setText(tooltipTxt)
             .setTextColorResource(R.color.green)
             .setTextSize(12f)
             .setPadding(8)
@@ -151,6 +198,5 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 
 }

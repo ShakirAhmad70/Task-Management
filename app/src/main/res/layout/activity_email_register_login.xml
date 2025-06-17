@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,172 +7,179 @@
     android:layout_height="match_parent"
     tools:context=".activities.auth.EmailRegisterLoginActivity">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/regLoginTv"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/largeMargin"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="@dimen/largeMargin"
-        android:text="@string/register_with_email"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/text_color"
-        android:textSize="@dimen/headingTextSize"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/emailLLC"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/editTextHeight"
-        android:layout_marginStart="@dimen/largeMargin"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="@dimen/largeMargin"
-        android:background="@drawable/orange_btn_stroke"
-        android:paddingStart="@dimen/largePadding"
-        android:paddingEnd="@dimen/smallPadding"
-        android:weightSum="10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/regLoginTv">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/regLoginTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/largeMargin"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="@dimen/largeMargin"
+            android:text="@string/register_with_email"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/headingTextSize"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/emailEdt"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="8.5"
-            android:cursorVisible="true"
-            android:hint="@string/enter_your_email"
-            android:inputType="textEmailAddress"
-            android:paddingStart="@dimen/smallPadding"
-            android:paddingEnd="@dimen/largePadding"
-            android:textCursorDrawable="@drawable/custom_cursor"
-            android:textSize="@dimen/smallTextSize" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/emailLLC"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/editTextHeight"
+            android:layout_marginStart="@dimen/largeMargin"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="@dimen/largeMargin"
+            android:background="@drawable/orange_btn_stroke"
+            android:paddingStart="@dimen/largePadding"
+            android:paddingEnd="@dimen/smallPadding"
+            android:weightSum="10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/regLoginTv">
 
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/emailLottieAnimView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1.5"
-            android:padding="@dimen/smallPadding"
-            app:lottie_autoPlay="false"
-            app:lottie_rawRes="@raw/email_animation"
-            app:lottie_repeatCount="1"
-            app:lottie_repeatMode="restart" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/passwordLLC"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/editTextHeight"
-        android:layout_marginStart="@dimen/largeMargin"
-        android:layout_marginTop="@dimen/largeMargin"
-        android:layout_marginEnd="@dimen/largeMargin"
-        android:background="@drawable/orange_btn_stroke"
-        android:paddingStart="@dimen/largePadding"
-        android:paddingEnd="@dimen/smallPadding"
-        android:weightSum="10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailLLC">
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/passwordEdt"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="8.5"
-            android:cursorVisible="true"
-            android:hint="@string/enter_your_password"
-            android:inputType="textPassword"
-            android:paddingStart="@dimen/smallPadding"
-            android:paddingEnd="@dimen/largePadding"
-            android:textCursorDrawable="@drawable/custom_cursor"
-            android:textSize="@dimen/smallTextSize" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/emailEdt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8.5"
+                android:cursorVisible="true"
+                android:hint="@string/enter_your_email"
+                android:inputType="textEmailAddress"
+                android:paddingStart="@dimen/smallPadding"
+                android:paddingEnd="@dimen/largePadding"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:textSize="@dimen/smallTextSize" />
 
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/passwordLottieAnimView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1.5"
-            android:padding="@dimen/smallPadding"
-            app:lottie_autoPlay="false"
-            app:lottie_rawRes="@raw/eye_password_animation" />
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/emailLottieAnimView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1.5"
+                android:padding="@dimen/smallPadding"
+                app:lottie_autoPlay="false"
+                app:lottie_rawRes="@raw/email_animation"
+                app:lottie_repeatCount="1"
+                app:lottie_repeatMode="restart" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/confirmPasswordLLC"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/editTextHeight"
-        android:layout_marginStart="@dimen/largeMargin"
-        android:layout_marginTop="@dimen/largeMargin"
-        android:layout_marginEnd="@dimen/largeMargin"
-        android:background="@drawable/orange_btn_stroke"
-        android:paddingStart="@dimen/largePadding"
-        android:paddingEnd="@dimen/smallPadding"
-        android:weightSum="10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordLLC">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/passwordLLC"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/editTextHeight"
+            android:layout_marginStart="@dimen/largeMargin"
+            android:layout_marginTop="@dimen/largeMargin"
+            android:layout_marginEnd="@dimen/largeMargin"
+            android:background="@drawable/orange_btn_stroke"
+            android:paddingStart="@dimen/largePadding"
+            android:paddingEnd="@dimen/smallPadding"
+            android:weightSum="10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/emailLLC">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/confirmPasswordEdt"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="8.5"
-            android:cursorVisible="true"
-            android:hint="@string/confirm_password"
-            android:inputType="textPassword"
-            android:paddingStart="@dimen/smallPadding"
-            android:paddingEnd="@dimen/largePadding"
-            android:textCursorDrawable="@drawable/custom_cursor"
-            android:textSize="@dimen/smallTextSize" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/passwordEdt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8.5"
+                android:cursorVisible="true"
+                android:hint="@string/enter_your_password"
+                android:inputType="textPassword"
+                android:paddingStart="@dimen/smallPadding"
+                android:paddingEnd="@dimen/largePadding"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:textSize="@dimen/smallTextSize" />
 
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/confirmPasswordLottieAnimView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1.5"
-            android:padding="@dimen/smallPadding"
-            app:lottie_autoPlay="false"
-            app:lottie_rawRes="@raw/eye_password_animation" />
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/passwordLottieAnimView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1.5"
+                android:padding="@dimen/smallPadding"
+                app:lottie_autoPlay="false"
+                app:lottie_rawRes="@raw/eye_password_animation" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/forgotPasswordTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/largeMargin"
-        android:layout_marginEnd="@dimen/largeMargin"
-        android:text="@string/forgot_password"
-        android:textColor="@color/grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordLLC" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/confirmPasswordLLC"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/editTextHeight"
+            android:layout_marginStart="@dimen/largeMargin"
+            android:layout_marginTop="@dimen/largeMargin"
+            android:layout_marginEnd="@dimen/largeMargin"
+            android:background="@drawable/orange_btn_stroke"
+            android:paddingStart="@dimen/largePadding"
+            android:paddingEnd="@dimen/smallPadding"
+            android:weightSum="10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/passwordLLC">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/regLoginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/orange_btn_bg"
-        android:paddingStart="@dimen/xxlargePadding"
-        android:paddingEnd="@dimen/xxlargePadding"
-        android:text="@string/register"
-        android:textAllCaps="false"
-        android:textColor="@color/text_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/passwordLLC"
-        app:layout_constraintTop_toBottomOf="@id/passwordLLC" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/confirmPasswordEdt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8.5"
+                android:cursorVisible="true"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                android:paddingStart="@dimen/smallPadding"
+                android:paddingEnd="@dimen/largePadding"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:textSize="@dimen/smallTextSize" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/confirmPasswordLottieAnimView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1.5"
+                android:padding="@dimen/smallPadding"
+                app:lottie_autoPlay="false"
+                app:lottie_rawRes="@raw/eye_password_animation" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/forgotPasswordTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/largeMargin"
+            android:layout_marginEnd="@dimen/largeMargin"
+            android:text="@string/forgot_password"
+            android:textColor="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/passwordLLC" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/regLoginBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/orange_btn_bg"
+            android:paddingStart="@dimen/xxlargePadding"
+            android:paddingEnd="@dimen/xxlargePadding"
+            android:text="@string/register"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color"
+            android:layout_marginTop="@dimen/xxlargeMargin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/confirmPasswordLLC" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

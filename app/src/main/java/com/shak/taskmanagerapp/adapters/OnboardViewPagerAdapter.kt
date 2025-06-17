@@ -28,7 +28,6 @@ class OnboardViewPagerAdapter(
         holder: OnboardViewPagerViewHolder,
         position: Int
     ) {
-
         val item = itemsList[position]
 
         holder.counter.text = "${position + 1} of ${itemsList.size}"

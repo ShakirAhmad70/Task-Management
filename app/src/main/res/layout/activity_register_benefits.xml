@@ -1,111 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.auth.RegisterBenefitsActivity">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/skipBtn"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/largeMargin"
-        android:layout_marginTop="@dimen/xlargeMargin"
-        android:layout_marginEnd="@dimen/largeMargin"
-        android:text="@string/skip"
-        android:textAlignment="textEnd"
-        android:textColor="@color/grey"
-        android:textSize="@dimen/xlargeTextSize"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/skipBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/largeMargin"
+            android:layout_marginTop="@dimen/xlargeMargin"
+            android:layout_marginEnd="@dimen/largeMargin"
+            android:text="@string/skip"
+            android:textAlignment="textEnd"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/xlargeTextSize"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/regBenefitsTxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/largeMargin"
-        android:layout_marginTop="@dimen/largeMargin"
-        android:layout_marginEnd="@dimen/largeMargin"
-        android:text="@string/register_benefits"
-        android:textAlignment="center"
-        android:textColor="@color/text_color"
-        android:textSize="@dimen/headingTextSize"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/skipBtn" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/regBenefitsTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/largeMargin"
+            android:layout_marginTop="@dimen/largeMargin"
+            android:layout_marginEnd="@dimen/largeMargin"
+            android:text="@string/register_benefits"
+            android:textAlignment="center"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/headingTextSize"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/skipBtn" />
 
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/regBenefitsVp"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/largeMargin"
-        android:layout_marginEnd="@dimen/largeMargin"
-        android:layout_marginBottom="@dimen/largeMargin"
-        app:layout_constraintBottom_toTopOf="@id/nextBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/regBenefitsTxt" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/regBenefitsVp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/largeMargin"
+            android:layout_marginEnd="@dimen/largeMargin"
+            android:layout_marginBottom="@dimen/largeMargin"
+            app:layout_constraintBottom_toTopOf="@id/nextBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/regBenefitsTxt" />
 
-    <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
-        android:id="@+id/dotsIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/smallMargin"
-        android:layout_marginBottom="@dimen/smallMargin"
-        app:dotsClickable="true"
-        app:dotsColor="@color/orange"
-        app:dotsSize="15dp"
-        app:layout_constraintBottom_toTopOf="@id/nextBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/regBenefitsVp" />
+        <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+            android:id="@+id/dotsIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/smallMargin"
+            android:layout_marginBottom="@dimen/smallMargin"
+            app:dotsClickable="true"
+            app:dotsColor="@color/orange"
+            app:dotsSize="15dp"
+            app:layout_constraintBottom_toTopOf="@id/nextBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/regBenefitsVp" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/nextBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginEnd="@dimen/largeMargin"
-        android:layout_marginBottom="@dimen/largeMargin"
-        android:background="@drawable/orange_btn_stroke"
-        android:text="@string/next"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@id/loginBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dotsIndicator" />
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/loginBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/largeMargin"
-        android:layout_marginEnd="@dimen/largeMargin"
-        android:layout_marginBottom="@dimen/largeMargin"
-        android:background="@drawable/orange_btn_bg"
-        android:text="@string/login"
-        app:layout_constraintBottom_toTopOf="@id/registerBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/registerBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/largeMargin"
-        android:layout_marginEnd="@dimen/largeMargin"
-        android:layout_marginBottom="@dimen/xxlargeMargin"
-        android:background="@drawable/orange_btn_stroke"
-        android:text="@string/register"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/nextBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/largeMargin"
+            android:layout_marginBottom="@dimen/largeMargin"
+            android:background="@drawable/orange_btn_stroke"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toTopOf="@id/loginBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dotsIndicator" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/largeMargin"
+            android:layout_marginEnd="@dimen/largeMargin"
+            android:layout_marginBottom="@dimen/largeMargin"
+            android:background="@drawable/orange_btn_bg"
+            android:text="@string/login"
+            app:layout_constraintBottom_toTopOf="@id/registerBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/registerBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/largeMargin"
+            android:layout_marginEnd="@dimen/largeMargin"
+            android:layout_marginBottom="@dimen/xxlargeMargin"
+            android:background="@drawable/orange_btn_stroke"
+            android:text="@string/register"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -1,253 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.auth.PhoneRegisterLoginActivity">
 
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/regLoginTv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/register_with_phone_no"
-        android:textStyle="bold"
-        android:textSize="@dimen/headingTextSize"
-        android:textColor="@color/text_color"
-        android:textAllCaps="false"
-        android:textAlignment="center"
-        android:layout_marginTop="80dp"
-        android:layout_marginStart="@dimen/largeMargin"
-        android:layout_marginEnd="@dimen/largeMargin"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/phoneLLC"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/editTextHeight"
-        android:layout_marginStart="@dimen/largeMargin"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="@dimen/largeMargin"
-        android:background="@drawable/orange_btn_stroke"
-        android:weightSum="10"
-        android:paddingStart="@dimen/largePadding"
-        android:paddingEnd="@dimen/smallPadding"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/regLoginTv">
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:text="@string/_91"
-            android:focusable="false"
-            android:textSize="@dimen/smallTextSize"
-            android:textAllCaps="false"
-            android:textAlignment="center"
-            android:textColor="@color/text_color"
-            />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/phoneEdt"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="6.5"
-            android:maxLength="10"
-            android:cursorVisible="true"
-            android:textCursorDrawable="@drawable/custom_cursor"
-            android:textAlignment="center"
-            android:textSize="@dimen/smallTextSize"
-            android:hint="@string/enter_your_phone_no"
-            android:inputType="numberDecimal"
-            android:paddingStart="@dimen/smallPadding"
-            android:paddingEnd="@dimen/largePadding"
-            />
-
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/phoneLottieAnimView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            app:lottie_autoPlay="false"
-            app:lottie_repeatCount="1"
-            app:lottie_repeatMode="restart"
-            android:layout_weight="1.5"
-            android:padding="@dimen/smallPadding"
-            android:layout_gravity="center_horizontal"
-            app:lottie_rawRes="@raw/phone_animation"
-            />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/OtpLLC"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:padding="@dimen/smallPadding"
-        android:layout_marginStart="@dimen/largeMargin"
-        android:layout_marginEnd="@dimen/largeMargin"
-        android:layout_marginTop="@dimen/xxlargeMargin"
-        app:layout_constraintTop_toBottomOf="@+id/phoneLLC"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        >
+        android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/otpEdt1"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/editTextHeight"
-            style="@style/BottomBarRemoverTheme"
-            android:maxLength="1"
-            android:cursorVisible="true"
-            android:textCursorDrawable="@drawable/custom_cursor"
-            android:gravity="center"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/regLoginTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/largeMargin"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="@dimen/largeMargin"
+            android:text="@string/register_with_phone_no"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color"
             android:textSize="@dimen/headingTextSize"
-            android:background="@drawable/orange_btn_stroke"
-            android:layout_marginStart="@dimen/smallMargin"
-            android:layout_marginEnd="@dimen/smallMargin"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/otpEdt2"
-            />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/otpEdt2"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/editTextHeight"
-            style="@style/BottomBarRemoverTheme"
-            android:maxLength="1"
-            android:cursorVisible="true"
-            android:textCursorDrawable="@drawable/custom_cursor"
-            android:gravity="center"
-            android:textSize="@dimen/headingTextSize"
-            android:background="@drawable/orange_btn_stroke"
-            android:layout_marginStart="@dimen/smallMargin"
-            android:layout_marginEnd="@dimen/smallMargin"
-            app:layout_constraintStart_toEndOf="@id/otpEdt1"
-            app:layout_constraintEnd_toStartOf="@id/otpEdt3"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/otpEdt3"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/editTextHeight"
-            style="@style/BottomBarRemoverTheme"
-            android:maxLength="1"
-            android:cursorVisible="true"
-            android:textCursorDrawable="@drawable/custom_cursor"
-            android:gravity="center"
-            android:textSize="@dimen/headingTextSize"
-            android:background="@drawable/orange_btn_stroke"
-            android:layout_marginStart="@dimen/smallMargin"
-            android:layout_marginEnd="@dimen/smallMargin"
-            app:layout_constraintStart_toEndOf="@id/otpEdt2"
-            app:layout_constraintEnd_toStartOf="@id/otpEdt4"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/otpEdt4"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/editTextHeight"
-            style="@style/BottomBarRemoverTheme"
-            android:maxLength="1"
-            android:cursorVisible="true"
-            android:textCursorDrawable="@drawable/custom_cursor"
-            android:gravity="center"
-            android:textSize="@dimen/headingTextSize"
-            android:background="@drawable/orange_btn_stroke"
-            android:layout_marginStart="@dimen/smallMargin"
-            android:layout_marginEnd="@dimen/smallMargin"
-            app:layout_constraintStart_toEndOf="@id/otpEdt3"
-            app:layout_constraintEnd_toStartOf="@+id/otpEdt5"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/otpEdt5"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/editTextHeight"
-            style="@style/BottomBarRemoverTheme"
-            android:maxLength="1"
-            android:cursorVisible="true"
-            android:textCursorDrawable="@drawable/custom_cursor"
-            android:gravity="center"
-            android:textSize="@dimen/headingTextSize"
-            android:background="@drawable/orange_btn_stroke"
-            android:layout_marginStart="@dimen/smallMargin"
-            android:layout_marginEnd="@dimen/smallMargin"
-            app:layout_constraintStart_toEndOf="@id/otpEdt4"
-            app:layout_constraintEnd_toStartOf="@id/otpEdt6"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/otpEdt6"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/editTextHeight"
-            style="@style/BottomBarRemoverTheme"
-            android:maxLength="1"
-            android:cursorVisible="true"
-            android:textCursorDrawable="@drawable/custom_cursor"
-            android:gravity="center"
-            android:textSize="@dimen/headingTextSize"
-            android:background="@drawable/orange_btn_stroke"
-            android:layout_marginStart="@dimen/smallMargin"
-            android:layout_marginEnd="@dimen/smallMargin"
-            app:layout_constraintStart_toEndOf="@id/otpEdt5"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/phoneLLC"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/editTextHeight"
+            android:layout_marginStart="@dimen/largeMargin"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="@dimen/largeMargin"
+            android:background="@drawable/orange_btn_stroke"
+            android:paddingStart="@dimen/largePadding"
+            android:paddingEnd="@dimen/smallPadding"
+            android:weightSum="10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/regLoginTv">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:focusable="false"
+                android:text="@string/_91"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/smallTextSize" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/phoneEdt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6.5"
+                android:cursorVisible="true"
+                android:hint="@string/enter_your_phone_no"
+                android:inputType="numberDecimal"
+                android:maxLength="10"
+                android:paddingStart="@dimen/smallPadding"
+                android:paddingEnd="@dimen/largePadding"
+                android:textAlignment="center"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:textSize="@dimen/smallTextSize" />
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/phoneLottieAnimView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1.5"
+                android:padding="@dimen/smallPadding"
+                app:lottie_autoPlay="false"
+                app:lottie_rawRes="@raw/phone_animation"
+                app:lottie_repeatCount="1"
+                app:lottie_repeatMode="restart" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/OtpLLC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/largeMargin"
+            android:layout_marginTop="@dimen/xxlargeMargin"
+            android:layout_marginEnd="@dimen/largeMargin"
+            android:padding="@dimen/smallPadding"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phoneLLC">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/otpEdt1"
+                style="@style/BottomBarRemoverTheme"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/editTextHeight"
+                android:layout_marginStart="@dimen/smallMargin"
+                android:layout_marginEnd="@dimen/smallMargin"
+                android:background="@drawable/orange_btn_stroke"
+                android:cursorVisible="true"
+                android:gravity="center"
+                android:maxLength="1"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:textSize="@dimen/headingTextSize"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/otpEdt2"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/otpEdt2"
+                style="@style/BottomBarRemoverTheme"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/editTextHeight"
+                android:layout_marginStart="@dimen/smallMargin"
+                android:layout_marginEnd="@dimen/smallMargin"
+                android:background="@drawable/orange_btn_stroke"
+                android:cursorVisible="true"
+                android:gravity="center"
+                android:maxLength="1"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:textSize="@dimen/headingTextSize"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/otpEdt3"
+                app:layout_constraintStart_toEndOf="@id/otpEdt1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/otpEdt3"
+                style="@style/BottomBarRemoverTheme"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/editTextHeight"
+                android:layout_marginStart="@dimen/smallMargin"
+                android:layout_marginEnd="@dimen/smallMargin"
+                android:background="@drawable/orange_btn_stroke"
+                android:cursorVisible="true"
+                android:gravity="center"
+                android:maxLength="1"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:textSize="@dimen/headingTextSize"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/otpEdt4"
+                app:layout_constraintStart_toEndOf="@id/otpEdt2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/otpEdt4"
+                style="@style/BottomBarRemoverTheme"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/editTextHeight"
+                android:layout_marginStart="@dimen/smallMargin"
+                android:layout_marginEnd="@dimen/smallMargin"
+                android:background="@drawable/orange_btn_stroke"
+                android:cursorVisible="true"
+                android:gravity="center"
+                android:maxLength="1"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:textSize="@dimen/headingTextSize"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/otpEdt5"
+                app:layout_constraintStart_toEndOf="@id/otpEdt3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/otpEdt5"
+                style="@style/BottomBarRemoverTheme"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/editTextHeight"
+                android:layout_marginStart="@dimen/smallMargin"
+                android:layout_marginEnd="@dimen/smallMargin"
+                android:background="@drawable/orange_btn_stroke"
+                android:cursorVisible="true"
+                android:gravity="center"
+                android:maxLength="1"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:textSize="@dimen/headingTextSize"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/otpEdt6"
+                app:layout_constraintStart_toEndOf="@id/otpEdt4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/otpEdt6"
+                style="@style/BottomBarRemoverTheme"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/editTextHeight"
+                android:layout_marginStart="@dimen/smallMargin"
+                android:layout_marginEnd="@dimen/smallMargin"
+                android:background="@drawable/orange_btn_stroke"
+                android:cursorVisible="true"
+                android:gravity="center"
+                android:maxLength="1"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:textSize="@dimen/headingTextSize"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/otpEdt5"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sendAndVerifyOtpBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/orange_btn_bg"
+            android:paddingStart="@dimen/xxlargePadding"
+            android:paddingEnd="@dimen/xxlargePadding"
+            android:text="@string/sendOtp"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/OtpLLC" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/resendOtpBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/editTextHeight"
+            android:layout_marginTop="@dimen/largeMargin"
+            android:background="@drawable/orange_btn_bg"
+            android:paddingStart="@dimen/xxlargePadding"
+            android:paddingEnd="@dimen/xxlargePadding"
+            android:text="@string/resend_otp"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sendAndVerifyOtpBtn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/sendAndVerifyOtpBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sendOtp"
-        android:textColor="@color/text_color"
-        android:textAllCaps="false"
-        android:paddingStart="@dimen/xxlargePadding"
-        android:paddingEnd="@dimen/xxlargePadding"
-        android:layout_marginTop="70dp"
-        android:background="@drawable/orange_btn_bg"
-        app:layout_constraintTop_toBottomOf="@id/OtpLLC"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/resendOtpBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/editTextHeight"
-        android:text="@string/resend_otp"
-        android:visibility="gone"
-        android:textColor="@color/text_color"
-        android:textAllCaps="false"
-        android:paddingStart="@dimen/xxlargePadding"
-        android:paddingEnd="@dimen/xxlargePadding"
-        android:background="@drawable/orange_btn_bg"
-        android:layout_marginTop="@dimen/largeMargin"
-        app:layout_constraintTop_toBottomOf="@id/sendAndVerifyOtpBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

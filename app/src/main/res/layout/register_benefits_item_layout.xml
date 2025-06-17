@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/counter"
-        android:textColor="@color/grey"
+        android:textColor="@color/gray"
         android:textAllCaps="false"
         android:textAlignment="center"
         android:textSize="@dimen/mediumTextSize"

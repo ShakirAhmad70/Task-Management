@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.splash.SplashActivity">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/splashImg"
-        android:layout_width="wrap_content"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        app:srcCompat="@drawable/app_logo"
-        />
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/splashTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/task_manager"
-        android:textSize="@dimen/headingTextSize"
-        android:textStyle="bold"
-        android:textColor="@color/text_color"
-        android:letterSpacing="0.1"
-        android:alpha="0"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/splashImg"
-        />
+        android:layout_gravity="center"
+        >
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/splashImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/app_logo" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/splashTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/splashImg"
+            android:layout_centerHorizontal="true"
+            android:alpha="0"
+            android:letterSpacing="0.1"
+            android:text="@string/task_manager"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/headingTextSize"
+            android:textStyle="bold" />
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>

@@ -92,7 +92,6 @@
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(intent)
                 }
-    
             }
         }
     
@@ -100,7 +99,7 @@
             val googleIdOption = GetGoogleIdOption.Builder()
                 .setFilterByAuthorizedAccounts(false)
                 .setServerClientId(BuildConfig.GOOGLE_WEB_CLIENT_ID)
-                .setAutoSelectEnabled(true)
+                .setAutoSelectEnabled(false)
                 .setNonce("")
                 .build()
     
@@ -195,7 +194,7 @@
         }
 
         private fun handleFacebookAccessToken(accessToken: AccessToken, context: Context) {
-            Log.d("FbToken", "handleFacebookAccessToken:$accessToken")
+            Log.d("FbToken", "handleFacebookAccessToken: $accessToken")
 
             val credential = FacebookAuthProvider.getCredential(accessToken.token)
             FirebaseAuth.getInstance().signInWithCredential(credential)
@@ -230,5 +229,4 @@
             // Pass the activity result back to the Facebook SDK
             fbCallbackManager.onActivityResult(requestCode, resultCode, data)
         }
-
     }

@@ -43,5 +43,12 @@
     <string name="bottom_bar_desc">This is SmoothBottomNavBar</string>
     <string name="eisenhower_matrix">Eisenhower Matrix</string>
     <string name="pomodoro_timer">Pomodoro Timer</string>
+    <string name="overdue_tasks">Overdue Tasks</string>
+    <string name="completed_tasks">Completed Tasks</string>
+    <string name="empty_tasks1">No tasks today</string>
+    <string name="empty_tasks2">Relax and take a break</string>
+    <string name="today">Today</string>
+    <string name="fab_desc">This button is use to add the tasks</string>
+    <string name="add_tasks">Add Tasks</string>
 
 </resources>

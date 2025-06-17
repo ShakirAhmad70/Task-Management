@@ -17,4 +17,6 @@
     <dimen name="largePadding">16dp</dimen>
     <dimen name="xlargePadding">24dp</dimen>
     <dimen name="xxlargePadding">32dp</dimen>
+    <dimen name="editTextHeight">54dp</dimen>
+    <dimen name="bottomBarHeight">70dp</dimen>
 </resources>
