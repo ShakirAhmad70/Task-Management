@@ -27,7 +27,7 @@ class TasksRecyclerAdapter(
     ) {
         val taskItem = taskItemsList[position]
 
-        holder.tasksTitleChkBox.isChecked = taskItem.isChecked
+        holder.tasksTitleChkBox.isChecked = taskItem.isCompleted
         holder.tasksTitleTxt.text = taskItem.title
         holder.showDate.text = taskItem.date
     }

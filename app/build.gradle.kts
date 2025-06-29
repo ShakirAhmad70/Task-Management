@@ -91,6 +91,9 @@ android {
 }
 
 dependencies {
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    annotationProcessor(libs.room.compiler)
     implementation(libs.balloon)
     implementation(libs.smooth.bottom.bar)
     implementation(libs.facebook.android.sdk)

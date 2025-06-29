@@ -1,5 +1,5 @@
 [versions]
-agp = "8.10.1"
+agp = "8.11.0"
 kotlin = "2.0.21"
 coreKtx = "1.16.0"
 junit = "4.13.2"
@@ -19,7 +19,7 @@ googleid = "1.1.1"
 facebookSdk = "18.0.3"
 smoothBottomNav = "1.7.9"
 balloon = "1.6.12"
-
+room = "2.7.1"
 
 
 [libraries]
@@ -40,6 +40,9 @@ googleid = { group = "com.google.android.libraries.identity.googleid", name = "g
 facebook-android-sdk = { group = "com.facebook.android", name = "facebook-android-sdk", version.ref = "facebookSdk" }
 smooth-bottom-bar = { group = "com.github.ibrahimsn98", name = "SmoothBottomBar", version.ref = "smoothBottomNav" }
 balloon = { group = "com.github.skydoves", name = "balloon", version.ref = "balloon" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 
 
 

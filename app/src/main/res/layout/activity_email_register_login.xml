@@ -49,11 +49,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="8.5"
                 android:cursorVisible="true"
+                android:textCursorDrawable="@drawable/custom_cursor"
                 android:hint="@string/enter_your_email"
                 android:inputType="textEmailAddress"
                 android:paddingStart="@dimen/smallPadding"
                 android:paddingEnd="@dimen/largePadding"
-                android:textCursorDrawable="@drawable/custom_cursor"
                 android:textSize="@dimen/smallTextSize" />
 
 

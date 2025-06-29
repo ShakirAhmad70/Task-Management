@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ui.MainActivity">
+    tools:context=".activities.ui.MainActivity"
+    >
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/mainAppBarLay"
@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:menu="@menu/toolbar_menu"
-            app:title="@string/app_name"
+            app:title="Tasks"
             app:titleTextColor="@color/text_color" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -39,172 +39,175 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/mainTasksContainerCLay"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:id="@+id/overDueTasksTitleContainerRLay"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/overDueTasksContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:layout_margin="@dimen/largeMargin"
                 android:background="@drawable/item_cornered_bg"
-                android:layout_marginStart="@dimen/largeMargin"
-                android:layout_marginEnd="@dimen/largeMargin"
+                android:orientation="vertical"
                 android:paddingStart="@dimen/largePadding"
                 android:paddingEnd="@dimen/largePadding"
-                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                >
+                tools:visibility="visible">
 
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/overDueTasksTitleChkBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"
-                    android:visibility="gone"
-                    android:layout_alignParentStart="true"
-                    />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/overDueTasksTitleTxt"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/overDueTasksTitleContainerRLay"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/overdue_tasks"
-                    android:textAllCaps="false"
-                    android:textAlignment="textStart"
-                    android:textSize="@dimen/xlargeTextSize"
-                    android:textStyle="bold"
-                    android:textColor="@color/text_color"
-                    android:layout_toEndOf="@id/overDueTasksTitleChkBox"
-                    android:layout_toStartOf="@id/overDueTasksCountTxt"
-                    />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/overDueTasksCountTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray"
-                    tools:text="3"
-                    android:textStyle="normal"
                     android:gravity="center_vertical"
-                    android:textSize="@dimen/xlargeTextSize"
-                    android:layout_marginEnd="@dimen/largeMargin"
-                    android:layout_toStartOf="@id/overDueTasksArrowTxt"
-                    />
+                    >
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/overDueTasksArrowTxt"
-                    android:layout_width="wrap_content"
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/overDueTasksTitleChkBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:checked="false"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:visibility="invisible"
+                        tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck"
+                        tools:visibility="visible" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/overDueTasksTitleTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@id/overDueTasksCountTxt"
+                        android:layout_toEndOf="@id/overDueTasksTitleChkBox"
+                        android:text="@string/overdue_tasks"
+                        android:textAlignment="textStart"
+                        android:textAllCaps="false"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/largeTextSize"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/overDueTasksCountTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/largeMargin"
+                        android:layout_toStartOf="@id/overDueTasksArrowTxt"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/largeTextSize"
+                        android:textStyle="normal"
+                        tools:ignore="TextContrastCheck"
+                        tools:text="0" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/overDueTasksArrowTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/largeTextSize"
+                        android:textStyle="normal"
+                        tools:ignore="TextContrastCheck"
+                        tools:text=">" />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/overDueTasksRV"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/gray"
-                    tools:text=">"
-                    android:textStyle="normal"
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/xlargeTextSize"
-                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/smallMargin"
                     />
 
-            </RelativeLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/overDueTasksRV"
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/completedTasksContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:background="@drawable/rv_cornered_bg"
-                android:layout_marginStart="@dimen/largeMargin"
-                android:layout_marginEnd="@dimen/largeMargin"
-                app:layout_constraintTop_toBottomOf="@id/overDueTasksTitleContainerRLay"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
-
-
-            <RelativeLayout
-                android:id="@+id/completedTasksTitleContainerRLay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:layout_margin="@dimen/largeMargin"
                 android:background="@drawable/item_cornered_bg"
-                android:layout_marginStart="@dimen/largeMargin"
-                android:layout_marginEnd="@dimen/largeMargin"
-                android:layout_marginTop="@dimen/largeMargin"
+                android:orientation="vertical"
                 android:paddingStart="@dimen/largePadding"
                 android:paddingEnd="@dimen/largePadding"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/overDueTasksRV"
-                >
-
-
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/completedTasksTitleChkBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"
-                    android:visibility="gone"
-                    android:layout_alignParentStart="true"
-                    />
-
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/completedTasksTitleTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/completed_tasks"
-                    android:textAllCaps="false"
-                    android:textAlignment="textStart"
-                    android:textSize="@dimen/xlargeTextSize"
-                    android:textStyle="bold"
-                    android:textColor="@color/text_color"
-                    android:layout_toEndOf="@id/completedTasksTitleChkBox"
-                    android:layout_toStartOf="@id/completedTasksCountTxt"
-                    />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/completedTasksCountTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray"
-                    tools:text="3"
-                    android:textStyle="normal"
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/xlargeTextSize"
-                    android:layout_marginEnd="@dimen/largeMargin"
-                    android:layout_toStartOf="@id/completedTasksArrowTxt"
-                    />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/completedTasksArrowTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray"
-                    tools:text=">"
-                    android:textStyle="normal"
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/xlargeTextSize"
-                    android:layout_alignParentEnd="true"
-                    />
-
-            </RelativeLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/completedTasksRV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:background="@drawable/rv_cornered_bg"
-                android:layout_marginStart="@dimen/largeMargin"
-                android:layout_marginEnd="@dimen/largeMargin"
-                app:layout_constraintTop_toBottomOf="@id/completedTasksTitleContainerRLay"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/overDueTasksContainer"
+                tools:visibility="visible">
+
+
+                <RelativeLayout
+                    android:id="@+id/completedTasksTitleContainerRLay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    >
+
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/completedTasksTitleChkBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:checked="false"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:visibility="invisible"
+                        tools:ignore="TouchTargetSizeCheck"
+                        tools:visibility="visible" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/completedTasksTitleTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@id/completedTasksCountTxt"
+                        android:layout_toEndOf="@id/completedTasksTitleChkBox"
+                        android:text="@string/completed_tasks"
+                        android:textAlignment="textStart"
+                        android:textAllCaps="false"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/largeTextSize"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/completedTasksCountTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/largeMargin"
+                        android:layout_toStartOf="@id/completedTasksArrowTxt"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/xlargeTextSize"
+                        android:textStyle="normal"
+                        tools:ignore="TextContrastCheck"
+                        tools:text="0" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/completedTasksArrowTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/xlargeTextSize"
+                        android:textStyle="normal"
+                        tools:ignore="TextContrastCheck"
+                        tools:text=">" />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/completedTasksRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/smallMargin"
+                    />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <RelativeLayout
                 android:id="@+id/mainEmptyTasksContainerRLay"
@@ -234,8 +237,7 @@
                     android:layout_marginTop="@dimen/largeMargin"
                     android:text="@string/empty_tasks1"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/xlargeTextSize"
-                    />
+                    android:textSize="@dimen/xlargeTextSize" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/emptyTxt2"
@@ -261,38 +263,38 @@
         android:id="@+id/addTasksFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:fabSize="normal"
-        app:icon="@drawable/ic_add"
-        android:text="@string/add_tasks"
-        android:textColor="@color/text_color"
-        android:focusable="true"
-        android:clickable="true"
-        android:tint="@color/text_color"
-        android:backgroundTint="@color/orange"
         android:layout_marginEnd="@dimen/largeMargin"
         android:layout_marginBottom="@dimen/largeMargin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavBar"
+        android:backgroundTint="@color/orange"
+        android:clickable="true"
         android:contentDescription="@string/fab_desc"
-        />
+        android:focusable="true"
+        android:text="@string/add_tasks"
+        android:textColor="@color/text_color"
+        android:tint="@color/text_color"
+        app:fabSize="normal"
+        app:icon="@drawable/ic_add"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="TextContrastCheck,RedundantDescriptionCheck" />
+
 
     <me.ibrahimsn.lib.SmoothBottomBar
         android:id="@+id/bottomNavBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottomBarHeight"
-        app:menu="@menu/bottom_nav_menu"
-        app:indicatorColor="@color/orange"
-        app:iconTintActive="@color/green"
-        app:iconTint="@color/text_color"
-        app:textColor="@color/green"
-        app:activeItem="0"
-        app:itemFontFamily="@font/cascadia_code"
-        app:sideMargins="@dimen/smallMargin"
-        app:backgroundColor="@android:color/transparent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:contentDescription="@string/bottom_bar_desc"
-        />
+        app:activeItem="0"
+        app:backgroundColor="@android:color/transparent"
+        app:iconTint="@color/text_color"
+        app:iconTintActive="@color/green"
+        app:indicatorColor="@color/orange"
+        app:itemFontFamily="@font/cascadia_code"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu"
+        app:sideMargins="@dimen/smallMargin"
+        app:textColor="@color/green" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

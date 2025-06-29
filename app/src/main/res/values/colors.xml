@@ -9,5 +9,5 @@
     <color name="orange">#FF9800</color>
     <color name="text_color">#000000</color>
     <color name="cream">#FFF8E1</color>
-    <color name="item_bg_color">#E7E1CE</color>
+    <color name="secondary_bg_color">#E7E1CE</color>
 </resources>

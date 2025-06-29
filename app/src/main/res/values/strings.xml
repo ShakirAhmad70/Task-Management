@@ -50,5 +50,7 @@
     <string name="today">Today</string>
     <string name="fab_desc">This button is use to add the tasks</string>
     <string name="add_tasks">Add Tasks</string>
+    <string name="what_would_you_like_to_do">What would you like to do?</string>
+    <string name="save">Save</string>
 
 </resources>

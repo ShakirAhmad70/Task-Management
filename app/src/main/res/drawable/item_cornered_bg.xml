@@ -3,12 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <solid
-        android:color="@color/item_bg_color"
+        android:color="@color/secondary_bg_color"
         />
 
     <corners
-        android:topLeftRadius="10dp"
-        android:topRightRadius="10dp"
+        android:radius="10dp"
         />
 
 </shape>
