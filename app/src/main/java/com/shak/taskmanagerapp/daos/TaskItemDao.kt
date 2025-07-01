@@ -3,22 +3,26 @@ package com.shak.taskmanagerapp.daos
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.shak.taskmanagerapp.models.TasksItemModel
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TaskItemDao {
 
-    @Query("SELECT * FROM tasks")
-    fun getTaskItems(): LiveData<List<TasksItemModel>>
+    @Query("SELECT * from tasks")
+    fun getAllTasks(): LiveData<List<TasksItemModel>>
 
-    @Query("SELECT * FROM tasks WHERE id = :id")
-    suspend fun getTaskItemById(id: Int): TasksItemModel
+    @Query("SELECT * FROM tasks WHERE isCompleted = 0")
+    fun getOverDueTasks(): LiveData<List<TasksItemModel>>
+
+    @Query("SELECT * FROM tasks WHERE isCompleted = 1")
+    fun getCompletedTasks(): LiveData<List<TasksItemModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTaskItem(task: TasksItemModel)
-
-    @Delete
-    suspend fun deleteTaskItem(task: TasksItemModel)
+    suspend fun insertTask(taskItemModel: TasksItemModel)
 
     @Update
-    suspend fun updateTaskItem(task: TasksItemModel)
+    suspend fun updateTask(taskItemModel: TasksItemModel)
+
+    @Delete
+    suspend fun deleteTask(taskItemModel: TasksItemModel)
 }

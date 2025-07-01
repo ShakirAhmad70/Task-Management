@@ -3,22 +3,19 @@ package com.shak.taskmanagerapp.utils
 import androidx.recyclerview.widget.DiffUtil
 import com.shak.taskmanagerapp.models.TasksItemModel
 
-class TaskItemDiffUtil(private val oldList: List<TasksItemModel>, private val newList: List<TasksItemModel>): DiffUtil.Callback() {
-    override fun getOldListSize() = oldList.size
-
-    override fun getNewListSize() = newList.size
-
+class TaskItemDiffUtil: DiffUtil.ItemCallback<TasksItemModel>() {
     override fun areItemsTheSame(
-        oldItemPosition: Int,
-        newItemPosition: Int
+        oldItem: TasksItemModel,
+        newItem: TasksItemModel
     ): Boolean {
-        return oldList[oldItemPosition].id == newList[newItemPosition].id
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(
-        oldItemPosition: Int,
-        newItemPosition: Int
+        oldItem: TasksItemModel,
+        newItem: TasksItemModel
     ): Boolean {
-        return oldList[oldItemPosition] == newList[newItemPosition]
+        return oldItem == newItem
     }
+
 }

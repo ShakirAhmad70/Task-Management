@@ -52,5 +52,8 @@
     <string name="add_tasks">Add Tasks</string>
     <string name="what_would_you_like_to_do">What would you like to do?</string>
     <string name="save">Save</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="arrow"><![CDATA[>]]></string>
 
 </resources>

@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.shak.taskmanagerapp.daos.TaskItemDao
 import com.shak.taskmanagerapp.models.TasksItemModel
 
-@Database(entities = [TasksItemModel::class], version = 1)
+@Database(entities = [TasksItemModel::class], version = 1, exportSchema = false)
 abstract class TaskItemDB : RoomDatabase() {
 
     abstract fun taskItemDao(): TaskItemDao
@@ -17,16 +17,17 @@ abstract class TaskItemDB : RoomDatabase() {
         @Volatile
         private var INSTANCE: TaskItemDB? = null
 
-        fun getInstance(context: Context): TaskItemDB {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    TaskItemDB::class.java,
-                    "taskItem.db"
-                ).build()
-                INSTANCE = instance
-                instance
+        fun getDatabase(context: Context): TaskItemDB {
+            if(INSTANCE == null) {
+                synchronized(this){
+                    INSTANCE = Room.databaseBuilder(
+                        context.applicationContext,
+                        TaskItemDB::class.java,
+                        "tasks.db"
+                    ).build()
+                }
             }
+            return INSTANCE!!
         }
     }
 }

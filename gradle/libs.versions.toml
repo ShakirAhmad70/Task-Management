@@ -1,6 +1,6 @@
 [versions]
 agp = "8.11.0"
-kotlin = "2.0.21"
+kotlin = "2.2.0"
 coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -10,16 +10,17 @@ material = "1.12.0"
 activity = "1.10.1"
 constraintlayout = "2.2.1"
 tbuonomo = "5.1.0"
-googleGmsGoogleServices = "4.4.2"
+googleGmsGoogleServices = "4.4.3"
 firebaseAuth = "23.2.1"
-lottie = "6.6.6"
+lottie = "6.6.7"
 credentials = "1.5.0"
 credentialsPlayServicesAuth = "1.5.0"
 googleid = "1.1.1"
 facebookSdk = "18.0.3"
 smoothBottomNav = "1.7.9"
 balloon = "1.6.12"
-room = "2.7.1"
+room = "2.7.2"
+ksp = "2.1.20-2.0.1"
 
 
 [libraries]
@@ -50,4 +51,5 @@ room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
+kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
