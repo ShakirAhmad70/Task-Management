@@ -18,6 +18,10 @@ import com.shak.taskmanagerapp.R
 import com.shak.taskmanagerapp.activities.auth.RegisterBenefitsActivity
 import com.shak.taskmanagerapp.activities.splash.SplashActivity
 import com.shak.taskmanagerapp.databinding.ActivityMainBinding
+import com.shak.taskmanagerapp.fragments.CalendarFragment
+import com.shak.taskmanagerapp.fragments.EisenhowerMatrixFragment
+import com.shak.taskmanagerapp.fragments.PomodoroTimerFragment
+import com.shak.taskmanagerapp.fragments.ProfileFragment
 import com.shak.taskmanagerapp.fragments.TasksFragment
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.BalloonAnimation
@@ -46,42 +50,58 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-
-        loadFragment(TasksFragment())   // Default Fragment to be loaded
+        if (savedInstanceState == null) {  // First time
+            loadFragment(TasksFragment())
+        } else {  // Restoring on configuration change
+            binding.bottomNavBar.itemActiveIndex = savedInstanceState.getInt("BOTTOM_NAV_INDEX")
+        }
 
         binding.apply {
 
             // Setup toolbar
             setSupportActionBar(mainToolbar)
 
-
             // Setup bottom navigation bar item clicks
             bottomNavBar.setOnItemSelectedListener {pos ->
-                setUpBottomNavBallons(pos)
+                setUpBottomNavClicks(pos)
             }
 
         }
 
     }
 
-    private fun setUpBottomNavBallons(pos: Int) {
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("BOTTOM_NAV_INDEX", binding.bottomNavBar.itemActiveIndex)
+    }
+
+    private fun setUpBottomNavClicks(pos: Int) {
         var tooltipTxt: String
 
         when(pos) {
             0 ->{
+                binding.mainToolbar.title = "Tasks"
                 loadFragment(TasksFragment())
                 tooltipTxt = "Tasks"
             }
             1 ->{
+                binding.mainToolbar.title = "Calendar"
+                loadFragment(CalendarFragment())
                 tooltipTxt = "Calendar"
             }
             2 ->{
+                binding.mainToolbar.title = "Eisenhower Matrix"
+                loadFragment(EisenhowerMatrixFragment())
                 tooltipTxt = "Eisenhower Matrix"
             }
             3 ->{
+                binding.mainToolbar.title = "Pomodoro Timer"
+                loadFragment(PomodoroTimerFragment())
                 tooltipTxt = "Pomodoro Timer"
             }
             4 ->{
+                binding.mainToolbar.title = "Profile"
+                loadFragment(ProfileFragment())
                 tooltipTxt = "Profile"
             }
             else -> tooltipTxt = "Unknown"

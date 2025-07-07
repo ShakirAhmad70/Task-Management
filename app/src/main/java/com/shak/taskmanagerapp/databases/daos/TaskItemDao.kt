@@ -1,4 +1,4 @@
-package com.shak.taskmanagerapp.daos
+package com.shak.taskmanagerapp.databases.daos
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

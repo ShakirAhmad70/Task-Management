@@ -43,6 +43,7 @@ android {
             buildConfigField("String", "MAIN_PREFERENCE_KEY", "\"${secretProperties.getProperty("MAIN_PREFERENCE_KEY")}\"")
             buildConfigField("String", "IS_LOGGED_OUT_KEY", "\"${secretProperties.getProperty("IS_LOGGED_OUT_KEY")}\"")
             buildConfigField("String", "IS_ONBOARDING_COMPLETED_KEY", "\"${secretProperties.getProperty("IS_ONBOARDING_COMPLETED_KEY")}\"")
+            buildConfigField("String", "CALENDARIFIC_API_KEY", "\"${secretProperties.getProperty("CALENDARIFIC_API_KEY")}\"")
 
             
             // Add manifest placeholders for direct manifest access
@@ -71,6 +72,8 @@ android {
             buildConfigField("String", "MAIN_PREFERENCE_KEY", "\"${secretProperties.getProperty("MAIN_PREFERENCE_KEY")}\"")
             buildConfigField("String", "IS_LOGGED_OUT_KEY", "\"${secretProperties.getProperty("IS_LOGGED_OUT_KEY")}\"")
             buildConfigField("String", "IS_ONBOARDING_COMPLETED_KEY", "\"${secretProperties.getProperty("IS_ONBOARDING_COMPLETED_KEY")}\"")
+            buildConfigField("String", "CALENDARIFIC_API_KEY", "\"${secretProperties.getProperty("CALENDARIFIC_API_KEY")}\"")
+
         }
     }
 

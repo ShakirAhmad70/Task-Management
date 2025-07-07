@@ -35,14 +35,11 @@ class TasksRecyclerAdapter(
 
 
     interface OnTaskInteractionListener {
-        fun onTaskCheckedChange(
-            taskItem: TasksItemModel,
-            isChecked: Boolean
-        )
+        fun onTaskCheckedChange(taskItem: TasksItemModel, isChecked: Boolean)
 
-        fun onTaskItemClicked(
-            taskItem: TasksItemModel
-        )
+        fun onTaskItemClicked(taskItem: TasksItemModel)
+
+        fun onTasksItemLongClicked(taskItem: TasksItemModel)
     }
 
     inner class TasksRecyclerViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -52,7 +49,7 @@ class TasksRecyclerAdapter(
 
 
         fun bindData(tasksItemModel: TasksItemModel) {
-            // clear previous listener if any
+            // clear previous listener if any to prevent multiple
             tasksTitleChkBox.setOnCheckedChangeListener(null)
 
             tasksTitleChkBox.isChecked = tasksItemModel.isCompleted
@@ -66,6 +63,11 @@ class TasksRecyclerAdapter(
 
             itemView.setOnClickListener {
                 listener.onTaskItemClicked(tasksItemModel)
+            }
+
+            itemView.setOnLongClickListener {
+                listener.onTasksItemLongClicked(tasksItemModel)
+                true  // We are returning true because we want to consume the event
             }
         }
     }

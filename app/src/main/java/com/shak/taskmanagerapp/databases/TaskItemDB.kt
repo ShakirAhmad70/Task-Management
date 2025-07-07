@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.shak.taskmanagerapp.daos.TaskItemDao
+import com.shak.taskmanagerapp.databases.daos.TaskItemDao
 import com.shak.taskmanagerapp.models.TasksItemModel
 
 @Database(entities = [TasksItemModel::class], version = 1, exportSchema = false)

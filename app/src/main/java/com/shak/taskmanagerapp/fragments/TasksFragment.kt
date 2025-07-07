@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
@@ -17,7 +18,7 @@ import androidx.transition.TransitionManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.shak.taskmanagerapp.R
 import com.shak.taskmanagerapp.adapters.TasksRecyclerAdapter
-import com.shak.taskmanagerapp.daos.TaskItemDao
+import com.shak.taskmanagerapp.databases.daos.TaskItemDao
 import com.shak.taskmanagerapp.databases.TaskItemDB
 import com.shak.taskmanagerapp.databinding.FragmentTasksBinding
 import com.shak.taskmanagerapp.models.TasksItemModel
@@ -31,7 +32,6 @@ class TasksFragment : Fragment() {
     private lateinit var binding: FragmentTasksBinding
     private lateinit var taskItemDao: TaskItemDao
     private lateinit var tasksDb: TaskItemDB
-    private val allTasksList = mutableListOf<TasksItemModel>()
 
     private lateinit var overDueAdapter: TasksRecyclerAdapter
     private lateinit var completedAdapter: TasksRecyclerAdapter
@@ -57,7 +57,7 @@ class TasksFragment : Fragment() {
         binding.apply {
 
             addTasksFab.setOnClickListener {
-                showAddEditTaskBottomSheet(getTodayDate())
+                showAddEditTaskBottomSheet()
             }
 
             emptyImg.setOnClickListener {
@@ -99,12 +99,12 @@ class TasksFragment : Fragment() {
 
     private fun observeTasks() {
         taskItemDao.getOverDueTasks().observe(viewLifecycleOwner) { overDueTasksList ->
-            overDueAdapter.submitList(overDueTasksList)
-            updateUI(overDueTasksList, completedAdapter.currentList)
+            overDueAdapter.submitList(overDueTasksList.toList())
+            updateUI(overDueTasksList, completedAdapter.currentList.toList())
         }
         taskItemDao.getCompletedTasks().observe(viewLifecycleOwner) { completedTasksList ->
-            completedAdapter.submitList(completedTasksList)
-            updateUI(overDueAdapter.currentList, completedTasksList)
+            completedAdapter.submitList(completedTasksList.toList())
+            updateUI(overDueAdapter.currentList.toList(), completedTasksList)
         }
     }
 
@@ -114,17 +114,33 @@ class TasksFragment : Fragment() {
                 taskItem.isCompleted = isChecked
                 lifecycleScope.launch(Dispatchers.IO) {
                     taskItemDao.updateTask(taskItem)
-                    withContext(Dispatchers.Main){
-                        updateUI(overDueAdapter.currentList, completedAdapter.currentList)
+
+                    withContext(Dispatchers.Main) {
+                        // Re-submit list to force adapter refresh (.toList() creates a fresh copy and forces ListAdapter to detect changes)
+                        overDueAdapter.submitList(overDueAdapter.currentList.toList())
+                        completedAdapter.submitList(completedAdapter.currentList.toList())
                     }
                 }
             }
 
             override fun onTaskItemClicked(taskItem: TasksItemModel) {
-                showAddEditTaskBottomSheet(
-                    taskItem.date,
-                    taskItem.title
-                )
+                showAddEditTaskBottomSheet(taskItem)
+            }
+
+            override fun onTasksItemLongClicked(taskItem: TasksItemModel) {
+                val deleteAlertDialog = AlertDialog.Builder(requireContext())
+                    .setTitle("Delete Task")
+                    .setMessage("Are you sure you want to delete this task?")
+                    .setPositiveButton("Delete") { _, _ ->
+                        lifecycleScope.launch(Dispatchers.IO){
+                            taskItemDao.deleteTask(taskItem)
+                        }
+                        updateUI(overDueAdapter.currentList, completedAdapter.currentList)
+                    }
+                    .setNegativeButton("Cancel", null)
+                    .create()
+
+                deleteAlertDialog.show()
             }
         })
 
@@ -133,17 +149,33 @@ class TasksFragment : Fragment() {
                     taskItem.isCompleted = isChecked
                     lifecycleScope.launch(Dispatchers.IO) {
                         taskItemDao.updateTask(taskItem)
+
                         withContext(Dispatchers.Main) {
-                            updateUI(overDueAdapter.currentList, completedAdapter.currentList)
+                            // Re-submit list to force adapter refresh
+                            overDueAdapter.submitList(overDueAdapter.currentList.toList())
+                            completedAdapter.submitList(completedAdapter.currentList.toList())
                         }
                     }
                 }
 
             override fun onTaskItemClicked(taskItem: TasksItemModel) {
-                showAddEditTaskBottomSheet(
-                    taskItem.date,
-                    taskItem.title
-                )
+                showAddEditTaskBottomSheet(taskItem)
+            }
+
+            override fun onTasksItemLongClicked(taskItem: TasksItemModel) {
+                val deleteAlertDialog = AlertDialog.Builder(requireContext())
+                    .setTitle("Delete Task")
+                    .setMessage("Are you sure you want to delete this task?")
+                    .setPositiveButton("Delete") { _, _ ->
+                        lifecycleScope.launch(Dispatchers.IO){
+                            taskItemDao.deleteTask(taskItem)
+                        }
+                        updateUI(overDueAdapter.currentList, completedAdapter.currentList)
+                    }
+                    .setNegativeButton("Cancel", null)
+                    .create()
+
+                deleteAlertDialog.show()
             }
         })
 
@@ -156,7 +188,7 @@ class TasksFragment : Fragment() {
         }
     }
 
-    private fun showAddEditTaskBottomSheet(currentDate: String, currentTitle: String? = null) {
+    private fun showAddEditTaskBottomSheet(taskForEdit: TasksItemModel? = null) {
         val bottomSheetView = layoutInflater.inflate(
             R.layout.add_edit_tasks_bottom_sheet_layout,
             binding.root,
@@ -165,21 +197,26 @@ class TasksFragment : Fragment() {
 
         val bottomSheetDialog = BottomSheetDialog(requireContext())
         bottomSheetDialog.setContentView(bottomSheetView)
-        bottomSheetDialog.setCanceledOnTouchOutside(false)
+        bottomSheetDialog.setCanceledOnTouchOutside(true)
         bottomSheetDialog.show()
 
         val titleEdt = bottomSheetView.findViewById<AppCompatEditText>(R.id.bottomSheetTitleEdt)
         val datePicker = bottomSheetView.findViewById<DatePicker>(R.id.bottomSheetDatePicker)
         val saveBtn = bottomSheetView.findViewById<AppCompatButton>(R.id.bottomSheetSaveBtn)
 
-        if(currentTitle != null){
-            titleEdt.setText(currentTitle)
+        val isEditing = taskForEdit != null
+
+        if(isEditing) {
+            titleEdt.setText(taskForEdit.title)
         }
-        val dateList = if(currentDate == "Today") {
-            getTodayDate().split("/")
+
+
+        val dateList = if(isEditing) {
+            if(taskForEdit.date == "Today") getTodayDate().split("/") else taskForEdit.date.split("/")
         } else {
-            currentDate.split("/")
+            getTodayDate().split("/")
         }
+
         val day = dateList[0].toInt()
         val month = dateList[1].toInt() - 1
         val year = dateList[2].toInt()
@@ -187,30 +224,39 @@ class TasksFragment : Fragment() {
 
         saveBtn.setOnClickListener {
             val title = titleEdt.text.toString()
-            val day = datePicker.dayOfMonth
-            val month = datePicker.month
-            val year = datePicker.year
+            val selectedDate = "${datePicker.dayOfMonth}/${datePicker.month + 1}/${datePicker.year}"
 
             if (title.isNotEmpty()) {
-                val dueDate = "$day/${month + 1}/$year"
+                val finalDate = if (selectedDate == getTodayDate()) "Today" else selectedDate
 
-                val newTask = TasksItemModel(
-                    title = title,
-                    date = if (dueDate == getTodayDate()) "Today" else dueDate,
-                    isCompleted = false
-                )
+                if (isEditing) {
+                    val updatedTask = taskForEdit.copy(title = title, date = finalDate)
 
-                allTasksList.add(newTask)
-                lifecycleScope.launch(Dispatchers.IO) {
-                    taskItemDao.insertTask(newTask)
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        taskItemDao.updateTask(updatedTask)
+                        withContext(Dispatchers.Main) {
+                            bottomSheetDialog.dismiss()
+                        }
+                    }
+                } else {
+                    val newTask = TasksItemModel(title = title, date = finalDate, isCompleted = false)
+
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        taskItemDao.insertTask(newTask)
+                        withContext(Dispatchers.Main) {
+                            bottomSheetDialog.dismiss()
+                        }
+                    }
                 }
-                updateUI(overDueAdapter.currentList, completedAdapter.currentList)
 
+
+                updateUI(overDueAdapter.currentList, completedAdapter.currentList)
                 bottomSheetDialog.dismiss()
             } else {
                 titleEdt.error = "Please enter a title"
             }
         }
+
     }
 
     private fun getTodayDate(): String {
