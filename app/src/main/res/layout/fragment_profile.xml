@@ -1,14 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profileScrollContainer"
+    android:background="@color/secondary_bg_color"
+    android:fillViewport="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileContainerCLay"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/profileContainerLLC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/profile_corner_bg"
+            android:padding="@dimen/xxlargePadding"
+            android:layout_margin="@dimen/smallMargin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImg"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/profile"
+                app:civ_border_color="@color/secondary_bg_color"
+                app:civ_border_width="2dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/userNameTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textAlignment="center"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/xxlargeTextSize"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/largeMargin"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/userEmailOrPhoneTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="@string/app_name"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/smallTextSize"
+                android:textStyle="normal"
+                android:layout_marginTop="@dimen/smallMargin"
+                />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/largeMargin"
+                />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/gotoTasksBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/orange_btn_bg"
+            android:paddingStart="@dimen/xlargePadding"
+            android:paddingEnd="@dimen/xlargePadding"
+            android:text="@string/go_to_tasks"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/mediumTextSize"
+            android:textStyle="normal"
+            app:layout_constraintTop_toBottomOf="@id/profileContainerLLC"
+            app:layout_constraintBottom_toBottomOf="@id/profileContainerLLC"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <ListView
+            android:id="@+id/profileOptionsListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/largeMargin"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/gotoTasksBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {  // First time
             loadFragment(TasksFragment())
         } else {  // Restoring on configuration change
-            binding.bottomNavBar.itemActiveIndex = savedInstanceState.getInt("BOTTOM_NAV_INDEX")
+            setNavItemActive(savedInstanceState.getInt("BOTTOM_NAV_INDEX"))
         }
 
         binding.apply {
@@ -68,6 +68,10 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    fun setNavItemActive(index: Int) {
+        binding.bottomNavBar.itemActiveIndex = index
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

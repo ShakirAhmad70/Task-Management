@@ -1,32 +1,34 @@
 package com.shak.taskmanagerapp.fragments
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.graphics.drawable.toBitmap
+import androidx.core.net.toUri
 import com.shak.taskmanagerapp.R
+import com.shak.taskmanagerapp.activities.ui.MainActivity
+import com.shak.taskmanagerapp.databinding.FragmentProfileBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private lateinit var binding: FragmentProfileBinding
+    private var selectedImageUri: Uri? = null
+    private val imagePickerLauncher = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ){
+        uri ->
+        uri?.let {
+            selectedImageUri = it
+            binding.profileImg.setImageURI(it)
+            // TODO: Upload profile image to Firebase Storage here
         }
     }
 
@@ -34,27 +36,86 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Restore image URI if available
+        savedInstanceState?.getString("PROFILE_IMAGE_URI")?.let {
+            selectedImageUri = it.toUri()
+            binding.profileImg.setImageURI(selectedImageUri)
+        }
+
+        binding.apply {
+            profileImg.setOnClickListener {
+                imagePickerLauncher.launch("image/*")
+            }
+
+            gotoTasksBtn.setOnClickListener {
+                val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.mainFrameLay, TasksFragment())
+                transaction.commit()
+
+                (requireActivity() as MainActivity).setNavItemActive(0)
+            }
+
+            setUpOptionsList()
+            profileOptionsListView.onItemClickListener
+
+        }
+
+
+    }
+
+    private fun setUpOptionsList() {
+        val options = listOf("Edit Profile", "Change Password", "Delete Account", "Log Out")
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, options)
+
+        binding.profileOptionsListView.adapter = adapter
+
+        binding.profileOptionsListView.setOnItemClickListener { parent, view, position, id ->
+            when(position) {
+                0 -> {
+                    android.widget.Toast.makeText(
+                        requireContext(),
+                        "Edit Profile clicked",
+                        android.widget.Toast.LENGTH_SHORT
+                    ).show()
+                }
+                1 -> {
+                    android.widget.Toast.makeText(
+                        requireContext(),
+                        "Change Password clicked",
+                        android.widget.Toast.LENGTH_SHORT
+                    ).show()
+                }
+                2 -> {
+                    android.widget.Toast.makeText(
+                        requireContext(),
+                        "Delete Account clicked",
+                        android.widget.Toast.LENGTH_SHORT
+                    ).show()
+                }
+                3 -> {
+                    android.widget.Toast.makeText(
+                        requireContext(),
+                        "Log Out clicked",
+                        android.widget.Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        // ✅ Save URI string only if not null
+        selectedImageUri?.let {
+            outState.putString("PROFILE_IMAGE_URI", it.toString())
+        }
     }
 }

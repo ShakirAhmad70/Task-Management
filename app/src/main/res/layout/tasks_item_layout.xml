@@ -9,14 +9,15 @@
 
     <View
         android:id="@+id/divider"
-        android:layout_width="200dp"
-        android:layout_height="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/divider_bg"
-        android:layout_marginBottom="@dimen/mediumMargin"
+        android:layout_marginBottom="@dimen/largeMargin"
         android:layout_marginEnd="@dimen/mediumMargin"
         android:layout_marginStart="@dimen/mediumMargin"
+        android:layout_marginTop="@dimen/mediumMargin"
         />
 
     <androidx.appcompat.widget.AppCompatCheckBox

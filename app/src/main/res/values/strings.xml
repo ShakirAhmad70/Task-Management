@@ -56,5 +56,6 @@
     <string name="arrow"><![CDATA[>]]></string>
     <string name="this_feature_is_under_development">This feature is under development</string>
     <string name="default_timer">00:00:00</string>
+    <string name="go_to_tasks">Go to Tasks</string>
 
 </resources>
